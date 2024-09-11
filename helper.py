@@ -29,18 +29,24 @@ def create_board():
     return maze
 
 def create_coins(board):
-    coins = []
 
-    coins.append((1, 1)) # Placeholder, ligne à retirer
 
     # TODO: Ajouter la position de toutes les cases '0' à la variable coins. Pour ajouter un élément, vous pouvez utiliser l'expression suivante :
-    # coins.append((x, y))
-    # en remplacant x et y par la position. Notez que le premier coin est à la position (0, 0)
+
+    coins = []
+
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 0:
+                coins.append((j, i))
 
     # TODO: Retirer les coins de chaque "coin" du carré. Vous devez utiliser la variable 'special_coins_pos' et la fonction 'remove'.
 
+
+
     # TODO: Retirer les coins aux positions centrales, en utilisant la variable 'center_pos'.
 
+  
     return coins
 
 def create_special_coins(board):
