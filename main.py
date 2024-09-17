@@ -12,7 +12,7 @@ pygame.init()
 # Définir les dimensions de la fenêtre du jeu
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Pac-Man")
-    
+
 background_color = (0, 0, 0)  # Couleur de fond noire
 
 # Initialiser la variable du score

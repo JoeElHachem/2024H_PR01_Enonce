@@ -93,33 +93,61 @@ class Game:
             self.screen.blit(pacman_image, (150 + i * 40, 50 * 15))
 
     def handle_keypress(self, event):
-        pass
+
         # TODO: Vérifiez si la touche pressée est la flèche droite avec event.key == pygame.K_RIGHT
             # TODO: Vérifiez si Pac-Man peut se déplacer à droite sans entrer en collision avec self.check_collision((1, 0))
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers la droite avec self.pacman.set_direction((1, 0))
 
+        if event.key == pygame.K_RIGHT:
+            if self.check_collision((1, 0)):
+                self.pacman.set_direction((1, 0))
+
+
         # TODO: Vérifiez si la touche pressée est la flèche gauche
             # TODO: Vérifiez si Pac-Man peut se déplacer à gauche sans entrer en collision
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers la gauche
+        if event.key == pygame.K_LEFT:
+            if self.check_collision((-1, 0)):
+                self.pacman.set_direction((-1, 0))
+
 
         # TODO: Vérifiez si la touche pressée est la flèche vers le haut
             # TODO: Vérifiez si Pac-Man peut se déplacer vers le haut sans entrer en collision
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers le haut
 
+        if event.key == pygame.K_UP:
+            if self.check_collision((0, -1)):
+                self.pacman.set_direction((0, -1))
+
         # TODO: Vérifiez si la touche pressée est la flèche vers le bas
             # TODO: Vérifiez si Pac-Man peut se déplacer vers le bas sans entrer en collision
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers le bas
-                
+        if event.key == pygame.K_DOWN:
+            if self.check_collision((0, 1)):
+                self.pacman.set_direction((0, 1))
 
     def check_collision(self, direction):
-        pass
+
         # TODO: Extraire les coordonnées de déplacement de la direction (dx, dy)
+
 
         # TODO: Calculer la nouvelle position de Pac-Man après le déplacement (new_x, new_y) avec la formule new_x = self.pacman.x + dx
     
         # TODO: Vérifier si la nouvelle position est un chemin valide ou un mur
         # Utiliser la grille (`self.board`) pour déterminer si la case est un chemin (0) ou un mur (1). return True si c'est un chemin, False si c'est un mur.
+        def check_collision(self, direction):
+            # Extract the movement coordinates from the direction
+            dx, dy = direction
 
+            # Calculate the new position of Pac-Man after the movement
+            new_x = self.pacman.x + dx
+            new_y = self.pacman.y + dy
+
+            # Check if the new position is a valid path or a wall
+            if self.board[new_y][new_x] == 0:
+                return True
+            else:
+                return False
     def update(self):
         for ghost in self.ghosts:
             ghost.draw()
