@@ -135,7 +135,7 @@ class Game:
     
         # TODO: Vérifier si la nouvelle position est un chemin valide ou un mur
         # Utiliser la grille (`self.board`) pour déterminer si la case est un chemin (0) ou un mur (1). return True si c'est un chemin, False si c'est un mur.
-        def check_collision(self, direction):
+
             # Extract the movement coordinates from the direction
             dx, dy = direction
 
