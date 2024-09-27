@@ -30,8 +30,6 @@ class Ghost:
         # Si le fantôme n'est pas "mort", commencez le calcul de sa prochaine position
         if not self.dead:
 
-
-
                 next_x = self.pos[0] + self.direction[0] * self.speed
                 next_y = self.pos[1] + self.direction[1] * self.speed
 
@@ -63,7 +61,7 @@ class Ghost:
             for y in range(int(rect.top / TILE_HEIGHT), int(rect.bottom / TILE_HEIGHT) + 1):
                 if 0 <= x < len(self.maze[0]) and 0 <= y < len(self.maze):
                     if self.maze[y][x] == 1: # Vérifier si le fantôme touche un mur
-                        return True
+                            return True
         return False
 
     def die(self):
