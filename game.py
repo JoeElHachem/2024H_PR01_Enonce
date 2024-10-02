@@ -143,7 +143,7 @@ class Game:
         self.pacman.move()
 
         self.pacman.draw()
-
+        self.pacman.update_invincibility()
         self.check_score()
 
         self.check_special_coins()
@@ -199,7 +199,7 @@ class Game:
 
     def check_collision_between_ghosts_and_pacman(self):
         for ghost in self.ghosts:
-            if ghost.rect.colliderect(self.pacman.rect):
+            if ghost.rect.colliderect(self.pacman.rect) and not self.pacman.invincible:
                 if ghost.edible:
                     ghost.stop()
                     ghost.die()

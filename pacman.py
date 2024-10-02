@@ -17,6 +17,8 @@ class PacMan:
         self.lives = 3
         self.screen_pos = grid_to_screen(grid_pos=[self.x, self.y], tile_size=[self.size_grid, self.size_grid])
         self.rect = pygame.Rect(self.screen_pos, PACMAN_SIZE)
+        self.invincible = False
+        self.invincible_timer = 0
         
     def draw(self):
         # Load the Pac-Man image
@@ -56,20 +58,6 @@ class PacMan:
                 self.rect.topleft = self.screen_pos
 
 
-            # TODO: Extraire la direction de déplacement à partir de l'attribut `self.direction`.
-            # TODO: Calculer les nouvelles coordonnées X et Y en fonction de la direction
-            # Ajouter la direction à la position actuelle (self.x, self.y) pour obtenir la nouvelle position.
-
-            # TODO: Vérifier si la nouvelle position entre en collision avec un mur
-            # Utiliser `self.board[new_y][new_x]` pour voir si la case correspond à un chemin (0) ou à un mur (1).
-
-                # TODO: Mettre à jour la position de Pac-Man si aucun mur n'est rencontré
-
-                # TODO: Convertir les nouvelles coordonnées de la grille en position à l'écran
-                # Utiliser une fonction comme `grid_to_screen` pour obtenir les coordonnées sur l'écran.
-
-                # TODO: Mettre à jour la position du rectangle de Pac-Man dans l'interface
-                # Mettre à jour `self.rect.topleft` avec la nouvelle position à l'écran pour déplacer l'affichage de Pac-Man.
 
 
 
@@ -88,8 +76,28 @@ class PacMan:
         if self.lives == 0:
             # Game over
             return True
-        
+
+
         # Reduce the number of lives
-        self.lives -= 1
+        if not self.invincible:
+            self.lives -= 1
+            self.activate_invincibility()
+
+
 
         self.reset()
+
+
+
+    def activate_invincibility(self):
+        self.invincible = True
+        self.invincibility_start_time = pygame.time.get_ticks()
+
+
+
+
+
+
+    def update_invincibility(self):
+        if self.invincible and pygame.time.get_ticks() - self.invincibility_start_time > 1000:
+             self.invincible = False
